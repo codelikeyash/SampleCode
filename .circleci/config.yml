@@ -1,0 +1,27 @@
+version: 2.1
+
+jobs:
+  build:
+    working_directory: ~/SampleCode
+    docker:
+      - image: "cimg/openjdk:11.0"
+    steps:
+      - checkout
+      - run: javac Source.java
+      - run: java Source
+  test:
+    working_directory: ~/SampleCode
+    docker:
+      - image: "cimg/openjdk:11.0"
+    steps:
+      - checkout
+      - run: javac Test.java
+      - run: java Test
+
+workflows:
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build

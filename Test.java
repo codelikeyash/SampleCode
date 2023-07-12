@@ -1,6 +1,4 @@
-import First.Source;
-
-public class Test{
+public class Test extends Source{
 
     public static void main(String[] args){
         Source s = new Source();
