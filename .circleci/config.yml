@@ -16,7 +16,7 @@ jobs:
     steps:
       - checkout
       - run: javac Test.java
-      - run: java Test
+      - run: java -ea Test
 
 workflows:
   build_and_test:
