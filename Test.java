@@ -6,6 +6,8 @@ public class Test extends Source{
             System.out.println("Test Case Passed\n");
         if(s.addNum(3, 3) == 6)
             System.out.println("Test Case Passed\n");
+        if(s.addNum(4, 4) == 8)
+            System.out.println("Test Case Passed\n");
         assert (s.addNum(2, 2) == 5);
     }
     
