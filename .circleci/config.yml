@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  build:
+  build-and-test:
     working_directory: ~/SampleCode
     docker:
       - image: "cimg/openjdk:11.0"
@@ -9,19 +9,22 @@ jobs:
       - checkout
       - run: javac Source.java
       - run: java Source
-  test:
-    working_directory: ~/SampleCode
-    docker:
-      - image: "cimg/openjdk:11.0"
-    steps:
-      - checkout
       - run: javac Test.java
       - run: java -ea Test
 
 workflows:
-  build_and_test:
+  version: 2
+  workflow-name:
     jobs:
-      - build
-      - test:
-          requires:
-            - build
+      - build-and-test:
+          filters:
+            branches:
+              only:
+                - master
+            tags:
+              ignore: /.*/
+            pull-requests:
+              types:
+                - opened
+                - synchronize
+        
